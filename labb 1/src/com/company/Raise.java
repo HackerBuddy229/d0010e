@@ -34,15 +34,18 @@ public class Raise {
         }
     }
 
-    private static double recRaiseHalf(double x, int k) {
+    public static double recRaiseHalf(double x, int k) {
         if (k == 0) {
             return 1;
         }
 
-        var exponent = Math.floor(k/2);
-        var x_pow_k = Math.pow(x, exponent);
+        var x_raised = recRaiseHalf(x, (int)Math.floor(k/2));
 
-        return k % 2 == 0 ? Math.pow(x_pow_k, 2) : Math.pow(x_pow_k, 2) * x;
+        if (k % 2 == 0) {
+            return x_raised * x_raised;
+        } else {
+            return x * x_raised * x_raised;
+        }
     }
 
 
